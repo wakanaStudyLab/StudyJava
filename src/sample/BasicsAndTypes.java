@@ -32,16 +32,16 @@ import java.util.Objects;
 public class BasicsAndTypes {
 
     public static void run() {
-        System.out.println("=== 1. プリミティブ型 vs 参照型 & 同値性 ===");
+        System.out.println("=== 1. Primitive vs Reference Types & Equality ===");
         demonstrateTypesAndEquality();
 
-        System.out.println("\n=== 2. モダン構文: var と Text Blocks ===");
+        System.out.println("\n=== 2. Modern Syntax: var and Text Blocks ===");
         demonstrateModernSyntax();
 
-        System.out.println("\n=== 3. Record (不変データキャリア) ===");
+        System.out.println("\n=== 3. Record (Immutable Data Carrier) ===");
         demonstrateRecords();
 
-        System.out.println("\n=== 4. Sealed Class & パターンマッチング (RustのEnum/ADT相当) ===");
+        System.out.println("\n=== 4. Sealed Class & Pattern Matching (Rust Enum/ADT) ===");
         demonstrateSealedAndPatternMatching();
     }
 
@@ -54,15 +54,15 @@ public class BasicsAndTypes {
         // Javaは -128 〜 127 のIntegerはキャッシュされますが、それ以外は別インスタンスになります。
         Integer a = 1000;
         Integer b = 1000;
-        System.out.println("a == b (参照比較): " + (a == b));             // false! (C#プログラマが最も引っかかる罠)
-        System.out.println("a.equals(b) (値比較): " + a.equals(b));       // true
-        System.out.println("Objects.equals(a, b): " + Objects.equals(a, b)); // null安全な推奨比較
+        System.out.println("a == b (Reference Comparison): " + (a == b));             // false! (C#プログラマが最も引っかかる罠)
+        System.out.println("a.equals(b) (Value Comparison): " + a.equals(b));       // true
+        System.out.println("Objects.equals(a, b) (Null-safe): " + Objects.equals(a, b)); // null安全な推奨比較
 
         // 文字列の比較
         String s1 = "hello";
         String s2 = new String("hello");
-        System.out.println("s1 == s2: " + (s1 == s2));         // false (別オブジェクト)
-        System.out.println("s1.equals(s2): " + s1.equals(s2)); // true (値の一致)
+        System.out.println("s1 == s2 (Reference): " + (s1 == s2));         // false (別オブジェクト)
+        System.out.println("s1.equals(s2) (Value): " + s1.equals(s2)); // true (値の一致)
     }
 
     private static void demonstrateModernSyntax() {
@@ -114,8 +114,8 @@ public class BasicsAndTypes {
 
         // getterは getX() ではなく x() で呼ぶ
         System.out.println("User: " + user1.name() + ", Age: " + user1.age());
-        System.out.println("toString() 自動生成: " + user1);
-        System.out.println("equals() 自動生成: " + user1.equals(user2)); // true (値同値性)
+        System.out.println("Auto-generated toString(): " + user1);
+        System.out.println("Auto-generated equals():   " + user1.equals(user2)); // true (値同値性)
         System.out.println("isAdult(): " + user1.isAdult());
     }
 
@@ -157,7 +157,7 @@ public class BasicsAndTypes {
         // 従来の「instanceof で確認してからキャスト」が1行で可能 (C#の is 演算子と同等)
         Object obj = "Hello Pattern Matching";
         if (obj instanceof String str && str.length() > 5) {
-            System.out.println("文字列かつ5文字超: " + str.toUpperCase());
+            System.out.println("String length > 5: " + str.toUpperCase());
         }
     }
 

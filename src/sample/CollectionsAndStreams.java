@@ -34,16 +34,16 @@ import java.util.stream.IntStream;
 public class CollectionsAndStreams {
 
     public static void run() {
-        System.out.println("=== 1. コレクションの生成（不変 vs 可変） ===");
+        System.out.println("=== 1. Creating Collections (Immutable vs Mutable) ===");
         demonstrateCollections();
 
-        System.out.println("\n=== 2. Stream API パイプライン (LINQ / Rust Iterator 相当) ===");
+        System.out.println("\n=== 2. Stream API Pipeline (LINQ / Rust Iterator) ===");
         demonstrateStreamPipeline();
 
-        System.out.println("\n=== 3. 高度な集計 (Collectors.groupingBy & 統計) ===");
+        System.out.println("\n=== 3. Advanced Aggregation (Collectors.groupingBy & Stats) ===");
         demonstrateAdvancedCollectors();
 
-        System.out.println("\n=== 4. プリミティブ特化 Stream (IntStream) ===");
+        System.out.println("\n=== 4. Primitive Specialized Streams (IntStream) ===");
         demonstratePrimitiveStreams();
     }
 
@@ -94,7 +94,7 @@ public class CollectionsAndStreams {
         int totalInventoryValue = products.stream()
             .mapToInt(p -> p.price() * p.stock())
             .sum();
-        System.out.println("Total Inventory Value: ¥" + String.format("%,d", totalInventoryValue));
+        System.out.println("Total Inventory Value: JPY " + String.format("%,d", totalInventoryValue));
     }
 
     private static void demonstrateAdvancedCollectors() {

@@ -29,19 +29,19 @@ import java.util.stream.IntStream;
 public class ConcurrencyAndVirtualThreads {
 
     public static void run() {
-        System.out.println("=== 1. Virtual Threads (Java 21+ / Goのgoroutine相当) ===");
+        System.out.println("=== 1. Virtual Threads (Java 21+ / Go goroutines equivalent) ===");
         demonstrateVirtualThreads();
 
-        System.out.println("\n=== 2. CompletableFuture (C# Task / JS Promise 相当) ===");
+        System.out.println("\n=== 2. CompletableFuture (C# Task / JS Promise) ===");
         demonstrateCompletableFuture();
 
-        System.out.println("\n=== 3. 並行コレクション & アトミック操作 ===");
+        System.out.println("\n=== 3. Concurrent Collections & Atomic Primitives ===");
         demonstrateConcurrentPrimitives();
     }
 
     private static void demonstrateVirtualThreads() {
         int taskCount = 10_000;
-        System.out.println(taskCount + " 個の仮想スレッドを並行起動してI/O待機をシミュレート...");
+        System.out.println("Spawning " + taskCount + " Virtual Threads concurrently to simulate I/O wait...");
 
         Instant start = Instant.now();
 
@@ -63,8 +63,8 @@ public class ConcurrencyAndVirtualThreads {
         } // ここで10,000タスクすべての完了が保証される
 
         Instant end = Instant.now();
-        System.out.println("10,000 タスク完了! 所要時間: " + Duration.between(start, end).toMillis() + " ms");
-        System.out.println("(プラットフォームスレッドで1万個作るとメモリ不足/OutOfMemoryErrorや大きなオーバーヘッドになります)");
+        System.out.println("10,000 tasks finished in: " + Duration.between(start, end).toMillis() + " ms");
+        System.out.println("(Creating 10,000 Platform/OS threads would cause OutOfMemoryError or huge overhead)");
     }
 
     private static void demonstrateCompletableFuture() {
@@ -87,7 +87,7 @@ public class ConcurrencyAndVirtualThreads {
 
         // 結果をブロックして取得 (join または get)
         String summary = combinedTask.join();
-        System.out.println("CompletableFuture 結合結果: " + summary);
+        System.out.println("CompletableFuture Result: " + summary);
 
         // 例外ハンドリングパイプライン (exceptionally / handle)
         CompletableFuture<String> safeTask = CompletableFuture.supplyAsync(() -> {
@@ -95,7 +95,7 @@ public class ConcurrencyAndVirtualThreads {
             return "Success";
         }).exceptionally(ex -> "Fallback Data (Error: " + ex.getMessage() + ")");
 
-        System.out.println("例外フォールバック結果: " + safeTask.join());
+        System.out.println("Exception Fallback Result: " + safeTask.join());
     }
 
     private static void demonstrateConcurrentPrimitives() {
@@ -117,7 +117,7 @@ public class ConcurrencyAndVirtualThreads {
             });
         }
 
-        System.out.println("AtomicCounter (期待値 1000): " + atomicCounter.get());
+        System.out.println("AtomicCounter (Expected 1000): " + atomicCounter.get());
     }
 
     private static void simulateLatency(long millis) {

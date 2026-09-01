@@ -32,13 +32,13 @@ import java.util.Optional;
 public class ExceptionAndResource {
 
     public static void run() {
-        System.out.println("=== 1. 検査例外 vs 非検査例外 (カスタム例外) ===");
+        System.out.println("=== 1. Checked vs Unchecked Exceptions (Custom Exception) ===");
         demonstrateExceptions();
 
         System.out.println("\n=== 2. try-with-resources (AutoCloseable) ===");
         demonstrateTryWithResources();
 
-        System.out.println("\n=== 3. Optional<T> のベストプラクティス (Rust Option相当) ===");
+        System.out.println("\n=== 3. Optional<T> Best Practices (Rust Option Equivalent) ===");
         demonstrateOptional();
     }
 
@@ -54,7 +54,7 @@ public class ExceptionAndResource {
         private final int requiredAmount;
 
         public InsufficientFundsException(int currentBalance, int requiredAmount) {
-            super("残高不足: 残高=" + currentBalance + ", 必要額=" + requiredAmount);
+            super("Insufficient funds: current=" + currentBalance + ", required=" + requiredAmount);
             this.currentBalance = currentBalance;
             this.requiredAmount = requiredAmount;
         }
@@ -67,10 +67,10 @@ public class ExceptionAndResource {
         try {
             withdraw("account-001", 5000, 10000);
         } catch (InsufficientFundsException e) {
-            System.err.println("業務エラー捕捉: " + e.getMessage());
-            System.err.println("不足額: " + (e.getRequiredAmount() - e.getCurrentBalance()));
+            System.err.println("Caught Domain Error: " + e.getMessage());
+            System.err.println("Shortage amount: " + (e.getRequiredAmount() - e.getCurrentBalance()));
         } catch (Exception e) {
-            System.err.println("予期せぬシステムエラー: " + e.getMessage());
+            System.err.println("Unexpected system error: " + e.getMessage());
         }
     }
 
@@ -88,17 +88,17 @@ public class ExceptionAndResource {
 
         public DatabaseSession(String connectionId) {
             this.connectionId = connectionId;
-            System.out.println("[DB] セッション開始: " + connectionId);
+            System.out.println("[DB] Session started: " + connectionId);
         }
 
         public void executeQuery(String sql) {
-            System.out.println("[DB] SQL実行 (" + connectionId + "): " + sql);
+            System.out.println("[DB] Executing SQL (" + connectionId + "): " + sql);
         }
 
         @Override
         public void close() {
             // ブロック脱出時に自動で確実に実行される (Goの defer、Rustの Drop)
-            System.out.println("[DB] セッション切断 (Closed): " + connectionId);
+            System.out.println("[DB] Session closed (Cleaned up): " + connectionId);
         }
     }
 
@@ -114,7 +114,7 @@ public class ExceptionAndResource {
                 System.out.println("Read: " + line);
             }
         } catch (Exception e) {
-            System.err.println("リソース操作エラー: " + e.getMessage());
+            System.err.println("Resource error: " + e.getMessage());
         }
         // ここに到達した時点で session.close() と reader.close() は完了済み
     }
@@ -151,15 +151,15 @@ public class ExceptionAndResource {
         // 3. 存在しない場合に例外をスロー (orElseThrow)
         try {
             UserProfile user = findUserById("unknown")
-                .orElseThrow(() -> new DomainException("ユーザーが見つかりません"));
+                .orElseThrow(() -> new DomainException("User not found"));
         } catch (DomainException e) {
-            System.out.println("orElseThrow 捕捉: " + e.getMessage());
+            System.out.println("orElseThrow caught: " + e.getMessage());
         }
 
         // 4. ifPresent / ifPresentOrElse (値があるときだけアクション実行)
         findUserById("u123").ifPresentOrElse(
-            u -> System.out.println("見つかりました: " + u.nickname()),
-            () -> System.out.println("見つかりませんでした")
+            u -> System.out.println("User found: " + u.nickname()),
+            () -> System.out.println("User not found")
         );
     }
 }

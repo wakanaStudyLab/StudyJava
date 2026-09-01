@@ -41,12 +41,12 @@ public class Main {
         // =====================================================================
 
         // ラムダ式による呼び出し例:
-        section("01: 基本型・モダン構文・型システム", () -> BasicsAndTypes.run());
-        section("02: コレクション & Stream API", () -> CollectionsAndStreams.run());
+        section("01: Primitive vs Reference Types, Records, Pattern Matching", () -> BasicsAndTypes.run());
+        section("02: Collections & Stream API (LINQ / Rust Iterator Equivalent)", () -> CollectionsAndStreams.run());
         
         // メソッド参照 (::) による呼び出し例（上記と全く同じ意味になります）:
-        section("03: 例外処理・リソース管理・Optional", ExceptionAndResource::run);
-        section("04: 並行処理・非同期・Virtual Threads", ConcurrencyAndVirtualThreads::run);
+        section("03: Exception Handling, try-with-resources, Optional", ExceptionAndResource::run);
+        section("04: Concurrency, Virtual Threads (Go goroutines equivalent), CompletableFuture", ConcurrencyAndVirtualThreads::run);
 
         printBanner("ALL TUTORIAL MODULES COMPLETED SUCCESSFULLY!");
     }
