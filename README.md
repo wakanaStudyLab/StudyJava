@@ -86,7 +86,11 @@ java -cp bin sample.Main
 | [`CollectionsAndStreams.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/CollectionsAndStreams.java) | コレクション & Stream | `List.of` (不変), `filter`/`map`/`sorted`/`toList`, `groupingBy`, `IntStream` (LINQ/Rust Iterator対比) |
 | [`ExceptionAndResource.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/ExceptionAndResource.java) | 例外 & リソース管理 | `RuntimeException` カスタム例外, `try-with-resources` (`AutoCloseable`), `Optional` ベストプラクティス |
 | [`ConcurrencyAndVirtualThreads.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/ConcurrencyAndVirtualThreads.java) | 並行・非同期・Virtual Threads | `newVirtualThreadPerTaskExecutor` (1万並行待機), `CompletableFuture`, `ConcurrentHashMap`, `AtomicInteger` |
-| [`Main.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/Main.java) | エントリーポイント | 上記4つのモジュールを一括実行するランナー |
+| [`LambdaDeepDive.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/LambdaDeepDive.java) | ラムダ式 & 関数型徹底攻略 | 基本構文、`java.util.function`、メソッド参照4形態、実質的final、例外処理、Strategyパターン |
+| [`Main.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/Main.java) | エントリーポイント | 上記全モジュールを一括実行するランナー |
+
+> 📖 **ラムダ式の理論と深層理解**:  
+> ラムダ式の完全な解説ドキュメントは [**`LAMBDA.md`**](file:///C:/Users/harun/programming/Java/sample/LAMBDA.md) を参照してください。構文の省略規則から内部バイトコード実装（`invokedynamic`）、他言語比較まで完全網羅しています。
 
 ---
 
