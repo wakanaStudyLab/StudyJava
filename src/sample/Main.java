@@ -49,6 +49,15 @@ public class Main {
         section("04: Concurrency, Virtual Threads (Go goroutines equivalent), CompletableFuture", ConcurrencyAndVirtualThreads::run);
         section("05: Lambda Expressions & Functional Programming Deep Dive", LambdaDeepDive::run);
 
+        // 新設モジュール (06〜12):
+        section("06: Generics Deep Dive, PECS Principle, Type Erasure", GenericsDeepDive::run);
+        section("07: Structured Concurrency & Scoped Values (Project Loom Phase 2)", StructuredConcurrencyAndScopedValues::run);
+        section("08: Modern File I/O (NIO.2 Files/Path) & Standard HttpClient", ModernIOAndHttpClient::run);
+        section("09: Reflection, Custom Annotations & Dynamic Proxies (Spring AOP Inside)", ReflectionAndProxies::run);
+        section("10: JVM Internals, Memory Model (JMM), volatile & Modern GC", JvmMemoryAndPerformance::run);
+        section("11: Sequenced Collections & Defensive Copying (Java 21+)", SequencedCollectionsAndSafety::run);
+        section("12: Modern Design Patterns in Java 21+ (Strategy, Sealed State, Flow API)", ModernDesignPatterns::run);
+
         printBanner("ALL TUTORIAL MODULES COMPLETED SUCCESSFULLY!");
     }
 
