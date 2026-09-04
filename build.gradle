@@ -45,3 +45,31 @@ tasks.named('jar') {
         attributes 'Main-Class': 'sample.Main'
     }
 }
+
+// OSネイティブ実行可能バイナリ (.exe) パッケージングタスク (JDK 26 標準 jpackage)
+tasks.register('packageExe', Exec) {
+    dependsOn tasks.named('jar')
+    group = 'distribution'
+    description = 'Packages the application into a standalone Windows .exe with bundled runtime.'
+
+    def javaHome = javaToolchains.launcherFor(java.toolchain).get().metadata.installationPath.asFile.absolutePath
+    def jpackageExe = "${javaHome}/bin/jpackage.exe"
+    def outputDir = layout.projectDirectory.dir('dist').asFile
+
+    doFirst {
+        if (outputDir.exists()) {
+            outputDir.deleteDir()
+        }
+    }
+
+    commandLine jpackageExe,
+        '--type', 'app-image',
+        '--name', 'ModernJavaSample',
+        '--input', layout.buildDirectory.dir('libs').get().asFile.absolutePath,
+        '--main-jar', "modern-java-sample-${version}.jar",
+        '--main-class', 'sample.Main',
+        '--java-options', '--enable-preview',
+        '--java-options', '--enable-native-access=ALL-UNNAMED',
+        '--win-console',
+        '--dest', outputDir.absolutePath
+}
