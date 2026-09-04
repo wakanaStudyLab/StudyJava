@@ -98,7 +98,7 @@ public class RecordPatternsAndAdvancedMatching {
 
         // try-catch で例外オブジェクトを使わない場合にも _ を使用可能
         try {
-            int parsed = Integer.parseInt("not_a_number");
+            Integer.parseInt("not_a_number");
         } catch (NumberFormatException _) {
             System.out.println("  Unnamed catch variable: Handled parse failure without unused 'e' variable.");
         }

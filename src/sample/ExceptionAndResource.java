@@ -150,7 +150,7 @@ public class ExceptionAndResource {
 
         // 3. 存在しない場合に例外をスロー (orElseThrow)
         try {
-            UserProfile user = findUserById("unknown")
+            findUserById("unknown")
                 .orElseThrow(() -> new DomainException("User not found"));
         } catch (DomainException e) {
             System.out.println("orElseThrow caught: " + e.getMessage());

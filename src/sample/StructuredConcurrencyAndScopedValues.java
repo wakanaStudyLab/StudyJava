@@ -1,7 +1,6 @@
 package sample;
 
 import java.util.concurrent.StructuredTaskScope;
-import java.lang.ScopedValue;
 import java.time.Duration;
 
 /**

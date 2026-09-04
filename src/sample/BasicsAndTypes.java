@@ -49,6 +49,7 @@ public class BasicsAndTypes {
         // --- プリミティブ vs ラッパー ---
         int pInt = 42;             // スタック上の値 (Goの int, Rustの i32, C#の int)
         Integer rInt = 42;          // ヒープ上のオブジェクト (Auto-Boxing)
+        System.out.println("Primitive: " + pInt + ", Wrapper: " + rInt);
 
         // --- 同一性 (==) の罠 ---
         // Javaは -128 〜 127 のIntegerはキャッシュされますが、それ以外は別インスタンスになります。
@@ -71,6 +72,7 @@ public class BasicsAndTypes {
         // ローカル変数のみで使用可能（フィールドやメソッド引数・戻り値には不可）。
         var message = "Hello Modern Java!"; // String と推論
         var count = 10;                     // int と推論
+        System.out.println("var inference: message='" + message + "', count=" + count);
 
         // --- Text Blocks (Java 15+) ---
         // 3つのダブルクォートで複数行文字列。インデントは自動でストリップ（正規化）されます。

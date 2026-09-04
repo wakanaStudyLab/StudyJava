@@ -13,12 +13,17 @@ Rust, C#, Go などの静的型付け言語を習得済みのエンジニアが�
 
 ```text
 .\
+├── build.gradle                      # Gradle ビルド定義 (Java 26 + プレビュー & ネイティブアクセス設定)
+├── settings.gradle                   # Gradle 設定ファイル
+├── gradlew / gradlew.bat             # Gradle Wrapper 実行スクリプト
+├── gradle/wrapper/                   # Gradle Wrapper 設定 & JAR
 ├── build_and_run.ps1                 # 一括コンパイル & 実行スクリプト (プレビュー & ネイティブアクセス有効化)
 ├── MODERN_JAVA_GUIDE.md              # 📕 モダンJava完全攻略マスターハンドブック (全内容網羅ガイド)
 ├── LAMBDA.md                         # 📘 Modern Java ラムダ式・関数型プログラミング完全理解ガイド
 ├── README.md                         # 本ファイル (総合リファレンス & 言語対比表)
 │
 ├── bin\                              # コンパイル済みバイトコード出力ディレクトリ (.class)
+├── build\libs\                       # Gradle ビルド成果物 (.jar) 出力ディレクトリ
 │
 └── src\sample\                       # ソースコード (全16モジュール)
     ├── BasicsAndTypes.java           # 01: 基本型・record・sealed interface・switch パターンマッチング
@@ -47,30 +52,48 @@ Rust, C#, Go などの静的型付け言語を習得済みのエンジニアが�
 | 項目 | 推奨バージョン | 備考 |
 | :--- | :--- | :--- |
 | **JDK (Java Development Kit)** | **Java 21 LTS 以上** (本環境: **Java 26.0.1**) | `javac`, `java` コマンドが PATH に通っていること |
-| **実行フラグ** | `--enable-preview --release 26` | Loom の最新機能（StructuredTaskScope / ScopedValue）に必要 |
+| **ビルドツール** | **Gradle 9.x** (Gradle Wrapper 同梱) | `.\gradlew` で自動取得・実行可能 |
+| **実行フラグ** | `--enable-preview --release 26` | Loom の最新機能、Panama FFM API に必要 |
 | **VS Code 拡張機能** | **Extension Pack for Java** (`vscjava.vscode-java-pack`) | コード補完、デバッグ (`F5`)、テスト実行 |
 
 ---
 
 ## 🚀 クイックスタート (ビルド & 実行方法)
 
-### 1. PowerShell スクリプトで一括実行 (最も簡単)
-ディレクトリ直下のスクリプトを実行するだけで、自動で `bin` フォルダを作成し全12モジュールのデモを順次実行します：
+### 1. Gradle を使用したビルド & 実行 (推奨)
+本プロジェクトは **Gradle Wrapper** を同梱しています。個別インストール不要でそのままビルド・実行できます。
+
+```powershell
+# ビルド (コンパイル + JAR生成)
+.\gradlew build
+
+# ビルドして実行
+.\gradlew run
+
+# クリーンビルド (キャッシュクリア再構築)
+.\gradlew clean build
+
+# 生成された JAR ファイルの直接実行
+java --enable-preview --enable-native-access=ALL-UNNAMED -jar build/libs/modern-java-sample-1.0.0.jar
+```
+
+### 2. PowerShell スクリプトで一括実行
+ディレクトリ直下のスクリプトを実行するだけでも、自動で `bin` フォルダを作成し全16モジュールのデモを順次実行します：
 
 ```powershell
 .\build_and_run.ps1
 ```
 
-### 2. コマンドラインでの手動コンパイル & 実行
+### 3. コマンドラインでの手動コンパイル & 実行 (javac)
 ```powershell
 # UTF-8 でプレビュー機能を有効化してコンパイル
 javac -encoding UTF-8 --enable-preview --release 26 -d bin src/sample/*.java
 
 # 実行
-java --enable-preview -cp bin sample.Main
+java --enable-preview --enable-native-access=ALL-UNNAMED -cp bin sample.Main
 ```
 
-### 3. VS Code での F5 デバッグ
+### 4. VS Code での F5 デバッグ
 - VS Codeでフォルダを開きます。
 - `src/sample/Main.java` を開き、**`F5`** キー（またはエディタ右上の `Run` ボタン）を押すだけでデバッグ実行できます。
 

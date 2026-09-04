@@ -35,10 +35,11 @@ public class LambdaDeepDive {
         BinaryOperator<Integer> addFull = (Integer a, Integer b) -> {
             return a + b;
         };
+        System.out.println("Addition result (full): " + addFull.apply(10, 20));
 
         // 型推論 + 単一式による省略記法 (Type inference + expression)
         BinaryOperator<Integer> addShort = (a, b) -> a + b;
-        System.out.println("Addition result: " + addShort.apply(10, 20));
+        System.out.println("Addition result (short): " + addShort.apply(10, 20));
 
         // 引数1つの場合: カッコ () の省略 (Single argument omitting parentheses)
         Function<String, Integer> lengthFunc = s -> s.length();

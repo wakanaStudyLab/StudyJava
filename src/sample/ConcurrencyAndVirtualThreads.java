@@ -91,7 +91,10 @@ public class ConcurrencyAndVirtualThreads {
 
         // 例外ハンドリングパイプライン (exceptionally / handle)
         CompletableFuture<String> safeTask = CompletableFuture.supplyAsync(() -> {
-            if (true) throw new RuntimeException("API Connection Failed");
+            boolean shouldFail = true;
+            if (shouldFail) {
+                throw new RuntimeException("API Connection Failed");
+            }
             return "Success";
         }).exceptionally(ex -> "Fallback Data (Error: " + ex.getMessage() + ")");
 

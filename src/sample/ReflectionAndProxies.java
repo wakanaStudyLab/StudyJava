@@ -109,7 +109,6 @@ public class ReflectionAndProxies {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private static void demonstrateDynamicProxy() {
         // 1. 本物のサービスインスタンス
         PaymentService realService = new RealPaymentService();
