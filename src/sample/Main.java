@@ -6,7 +6,7 @@ package sample;
  * ============================================================================
  * 
  * 実行方法:
- *   1. sample ディレクトリ (C:\Users\harun\programming\Java\sample) で:
+ *   1. プロジェクトルートディレクトリ (sample ディレクトリ) で:
  *      javac -encoding UTF-8 -d bin src/sample/*.java
  *      java -cp bin sample.Main
  * 
@@ -58,7 +58,13 @@ public class Main {
         section("11: Sequenced Collections & Defensive Copying (Java 21+)", SequencedCollectionsAndSafety::run);
         section("12: Modern Design Patterns in Java 21+ (Strategy, Sealed State, Flow API)", ModernDesignPatterns::run);
 
-        printBanner("ALL TUTORIAL MODULES COMPLETED SUCCESSFULLY!");
+        // 最新鋭モジュール (13〜16: Java 21〜26 最新世代):
+        section("13: Foreign Function & Memory API (Project Panama, Off-Heap & Native C)", ForeignFunctionAndMemoryAPI::run);
+        section("14: Stream Gatherers & Custom Pipelines (JEP 461/473/485)", StreamGatherersAndPipelines::run);
+        section("15: Record Patterns, Deconstruction & Unnamed Variables (_) (JEP 440/456)", RecordPatternsAndAdvancedMatching::run);
+        section("16: Flexible Constructor Bodies & Modern Clean Architecture (JEP 482)", FlexibleConstructorAndModernLanguage::run);
+
+        printBanner("ALL 16 TUTORIAL MODULES COMPLETED SUCCESSFULLY!");
     }
 
     /**

@@ -13,4 +13,4 @@ if (!(Test-Path "bin")) {
 javac -encoding UTF-8 --enable-preview --release 26 -d bin src/sample/*.java
 
 Write-Host "`n===> 2. Running Modern Java Sample (sample.Main)..." -ForegroundColor Cyan
-java --enable-preview -cp bin sample.Main
+java --enable-preview --enable-native-access=ALL-UNNAMED -cp bin sample.Main

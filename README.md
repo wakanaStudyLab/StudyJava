@@ -2,7 +2,10 @@
 
 Rust, C#, Go などの静的型付け言語を習得済みのエンジニアが、**最短でモダンJava（Java 21〜26 LTS世代）をマスターするための体系的リファレンス & サンプルコード集**です。
 
-基本構文・型システム・ラムダから、PECSジェネリクス、構造化並行性（Project Loom）、NIO.2/HttpClient、リフレクション/動的プロキシ（Spring内部機構）、JMM（メモリモデル）、デザインパターンまで全12モジュールで完全網羅しています。
+基本構文・型システム・ラムダから、PECSジェネリクス、構造化並行性（Project Loom）、NIO.2/HttpClient、リフレクション/動的プロキシ（Spring内部機構）、JMM（メモリモデル）、デザインパターン、さらに **Project Panama FFM API (ネイティブC連携・オフヒープメモリ)、Stream Gatherers、Record Patterns (構造分解)、Flexible Constructor Bodies** まで全16モジュールで完全網羅しています。
+
+> 📖 **総合解説マスターハンドブック**:  
+> 本リポジトリの全16モジュールの詳細解説、他言語対比、内部メカニズム、ベストプラクティスを一気通貫で読める [**`MODERN_JAVA_GUIDE.md`**](./MODERN_JAVA_GUIDE.md) を新設しました！これ1冊でモダンJavaの全貌をマスターできます。
 
 ---
 
@@ -10,13 +13,14 @@ Rust, C#, Go などの静的型付け言語を習得済みのエンジニアが�
 
 ```text
 .\
-├── build_and_run.ps1                 # 一括コンパイル & 実行スクリプト (プレビュー有効化)
+├── build_and_run.ps1                 # 一括コンパイル & 実行スクリプト (プレビュー & ネイティブアクセス有効化)
+├── MODERN_JAVA_GUIDE.md              # 📕 モダンJava完全攻略マスターハンドブック (全内容網羅ガイド)
 ├── LAMBDA.md                         # 📘 Modern Java ラムダ式・関数型プログラミング完全理解ガイド
 ├── README.md                         # 本ファイル (総合リファレンス & 言語対比表)
 │
 ├── bin\                              # コンパイル済みバイトコード出力ディレクトリ (.class)
 │
-└── src\sample\                       # ソースコード (全12モジュール)
+└── src\sample\                       # ソースコード (全16モジュール)
     ├── BasicsAndTypes.java           # 01: 基本型・record・sealed interface・switch パターンマッチング
     ├── CollectionsAndStreams.java    # 02: 不変/可変コレクション・Stream API パイプライン・LINQ対比
     ├── ExceptionAndResource.java     # 03: 検査/非検査例外・try-with-resources・Optional ベストプラクティス
@@ -29,7 +33,11 @@ Rust, C#, Go などの静的型付け言語を習得済みのエンジニアが�
     ├── JvmMemoryAndPerformance.java  # 10: JVMメモリ解剖・JMM (volatile / happens-before)・G1GC/ZGC
     ├── SequencedCollectionsAndSafety.java # 11: Java 21 Sequenced Collections・防衛的コピー・record検証
     ├── ModernDesignPatterns.java     # 12: Modern Strategy・Sealed State パターン・Flow API (Reactive)
-    └── Main.java                     # 全12モジュール統合エントリーポイント
+    ├── ForeignFunctionAndMemoryAPI.java # 13: Project Panama FFM API (Arena, MemorySegment, Cライブラリ呼出)
+    ├── StreamGatherersAndPipelines.java # 14: Stream Gatherers (windowFixed, windowSliding, scan, mapConcurrent)
+    ├── RecordPatternsAndAdvancedMatching.java # 15: Record Patterns (構造分解), 無名変数 (_), 網羅的 switch
+    ├── FlexibleConstructorAndModernLanguage.java # 16: Statements before super(), 現代的Result型設計
+    └── Main.java                     # 全16モジュール統合エントリーポイント
 ```
 
 ---
@@ -141,7 +149,7 @@ java --enable-preview -cp bin sample.Main
 
 ---
 
-## 📁 全12モジュール構成一覧
+## 📁 全16モジュール構成一覧
 
 | # | クラス名 | 主な学習トピック |
 | :-: | :--- | :--- |
@@ -157,19 +165,24 @@ java --enable-preview -cp bin sample.Main
 | **10** | [`JvmMemoryAndPerformance.java`](./src/sample/JvmMemoryAndPerformance.java) | JVM メモリ解剖 (Heap / Stack / Metaspace)、**JMM (Java Memory Model)**、**`volatile`** と happens-before 関係、G1GC vs ZGC (世代別ZGC)、オブジェクトヘッダー構造 |
 | **11** | [`SequencedCollectionsAndSafety.java`](./src/sample/SequencedCollectionsAndSafety.java) | **Java 21 `SequencedCollection`** (`getFirst()`, `getLast()`, `reversed()`)、防衛的コピーの罠 (`unmodifiableList` vs `List.copyOf`)、`record` コンパクトコンストラクタ検証 |
 | **12** | [`ModernDesignPatterns.java`](./src/sample/ModernDesignPatterns.java) | Modern Strategy パターン (ラムダ関数化)、Modern State パターン (**Sealed Interface + switch 式**)、Reactive Streams (**`java.util.concurrent.Flow` API**) |
+| **13** | [`ForeignFunctionAndMemoryAPI.java`](./src/sample/ForeignFunctionAndMemoryAPI.java) | **Project Panama FFM API** (`Arena`, `MemorySegment`, C標準ライブラリダウンコール, ゼロコピーオフヒープメモリ) |
+| **14** | [`StreamGatherersAndPipelines.java`](./src/sample/StreamGatherersAndPipelines.java) | **Stream Gatherers (JEP 461/473/485)** (`windowFixed`, `windowSliding`, `scan`, `mapConcurrent`, 自作Gatherer) |
+| **15** | [`RecordPatternsAndAdvancedMatching.java`](./src/sample/RecordPatternsAndAdvancedMatching.java) | **レコードパターン（構造分解: Deconstruction）**、ネスト深層マッチング、無名変数・パターン (`_` JEP 456)、網羅的 switch |
+| **16** | [`FlexibleConstructorAndModernLanguage.java`](./src/sample/FlexibleConstructorAndModernLanguage.java) | **Flexible Constructor Bodies (JEP 482)** (`super(...)` 前の文実行)、Result型イディオム、ゼロボイラープレート設計 |
 
-- [`Main.java`](./src/sample/Main.java): 全12モジュールを順序よく実演する統合エントリーポイント
+- [`Main.java`](./src/sample/Main.java): 全16モジュールを順序よく実演する統合エントリーポイント
 
-> 📖 **詳細理論ドキュメント**:  
-> ラムダ式の完全な解説ドキュメントは [**`LAMBDA.md`**](./LAMBDA.md) を参照してください。構文の省略規則から内部バイトコード実装（`invokedynamic`）、他言語比較まで完全網羅しています。
+> 📖 **総合解説 & 理論ドキュメント**:  
+> - **[📕 `MODERN_JAVA_GUIDE.md`](./MODERN_JAVA_GUIDE.md)**: **プロジェクトの全内容・モダンJavaの本質・他言語対比を一気通貫で読めば大体わかる総合マスターハンドブック（必読！）**
+> - **[📘 `LAMBDA.md`](./LAMBDA.md)**: ラムダ式・関数型インターフェース完全理解ガイド（内部バイトコード `invokedynamic` まで網羅）
 
 ---
 
 ## 📚 推薦学習ロードマップ
 
-1. **第1部: 言語基盤と関数型プログラミング (モジュール 01〜03, 05)**
+1. **第1部: 言語基盤と関数型プログラミング (モジュール 01〜03, 05, 11)**
    - プリミティブ vs 参照型、`record`、`sealed interface`、パターンマッチング switch 式
-   - コレクションと Stream API パイプライン
+   - コレクション、Sequenced Collections、Stream API パイプライン
    - 例外設計（非検査例外中心）と `try-with-resources`、`Optional` の正しい使い方
    - ラムダ式の構文解剖と関数型インターフェース
 2. **第2部: 型システムとフレームワークの裏側 (モジュール 06, 09)**
@@ -180,11 +193,15 @@ java --enable-preview -cp bin sample.Main
    - `CompletableFuture` による非同期合成
    - 構造化並行性 (`StructuredTaskScope`) によるスレッドリーク根絶
    - スコープ付き値 (`ScopedValue`) による軽量コンテキスト受け渡し
-4. **第4部: I/O・低レイヤ・アーキテクチャ (モジュール 08, 10, 11, 12)**
+4. **第4部: I/O・低レイヤ・アーキテクチャ (モジュール 08, 10, 12)**
    - NIO.2 (`Files` / `Path`) と最新標準 `HttpClient`
    - JVM メモリ構造、JMM (`volatile` と happens-before)、現代 GC (G1 / ZGC)
-   - Java 21 `SequencedCollection` と不変プログラミング
    - Modern Java によるデザインパターン（Strategy, Sealed State, Flow API）
+5. **第5部: 最先端・ネイティブ連携・言語進化 (モジュール 13〜16)**
+   - Project Panama: FFM API によるオフヒープメモリ直接操作と C ライブラリ呼出
+   - Stream Gatherers による中間操作のカスタム拡張（チャンク化、移動平均、並行実行）
+   - レコードパターン（分解代入）と無名変数 (`_`) による深層パターンマッチング
+   - Statements before `super(...)` とモダンクリーンアーキテクチャ設計
 
 ---
 
