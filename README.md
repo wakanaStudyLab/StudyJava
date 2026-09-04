@@ -9,7 +9,7 @@ Rust, C#, Go などの静的型付け言語を習得済みのエンジニアが�
 ## 📂 プロジェクト全体構成 (Directory Structure)
 
 ```text
-C:\Users\harun\programming\Java\sample\
+.\
 ├── build_and_run.ps1                 # 一括コンパイル & 実行スクリプト (プレビュー有効化)
 ├── LAMBDA.md                         # 📘 Modern Java ラムダ式・関数型プログラミング完全理解ガイド
 ├── README.md                         # 本ファイル (総合リファレンス & 言語対比表)
@@ -50,14 +50,11 @@ C:\Users\harun\programming\Java\sample\
 ディレクトリ直下のスクリプトを実行するだけで、自動で `bin` フォルダを作成し全12モジュールのデモを順次実行します：
 
 ```powershell
-cd C:\Users\harun\programming\Java\sample
 .\build_and_run.ps1
 ```
 
 ### 2. コマンドラインでの手動コンパイル & 実行
 ```powershell
-cd C:\Users\harun\programming\Java\sample
-
 # UTF-8 でプレビュー機能を有効化してコンパイル
 javac -encoding UTF-8 --enable-preview --release 26 -d bin src/sample/*.java
 
@@ -66,7 +63,7 @@ java --enable-preview -cp bin sample.Main
 ```
 
 ### 3. VS Code での F5 デバッグ
-- VS Code で `C:\Users\harun\programming\Java\sample` フォルダを開きます。
+- VS Codeでフォルダを開きます。
 - `src/sample/Main.java` を開き、**`F5`** キー（またはエディタ右上の `Run` ボタン）を押すだけでデバッグ実行できます。
 
 ---
@@ -148,23 +145,23 @@ java --enable-preview -cp bin sample.Main
 
 | # | クラス名 | 主な学習トピック |
 | :-: | :--- | :--- |
-| **01** | [`BasicsAndTypes.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/BasicsAndTypes.java) | プリミティブ vs 参照型、Auto-Boxing の罠、`==` vs `equals`、`var`、Text Blocks、**`record`**、**`sealed interface`**、`switch` パターンマッチング |
-| **02** | [`CollectionsAndStreams.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/CollectionsAndStreams.java) | 不変リスト (`List.of`) vs 可変リスト、Stream パイプライン (`filter`/`map`/`sorted`/`toList`)、`Collectors.groupingBy`、`IntStream` (LINQ/Rust Iterator対比) |
-| **03** | [`ExceptionAndResource.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/ExceptionAndResource.java) | 検査例外 (Checked) vs 非検査例外 (Unchecked)、`try-with-resources` (`AutoCloseable`) による確実なリソース解放、**`Optional<T>`** の作法とアンチパターン |
-| **04** | [`ConcurrencyAndVirtualThreads.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/ConcurrencyAndVirtualThreads.java) | **Virtual Threads** (1万並行の超高速起動)、`CompletableFuture` (非同期合成・エラーフォールバック)、`ConcurrentHashMap`、`AtomicInteger` |
-| **05** | [`LambdaDeepDive.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/LambdaDeepDive.java) | ラムダ式構文、標準関数型インターフェース (`Predicate`, `Function`, `Consumer`, `Supplier`)、メソッド参照4形態 (`::`)、実質的final、例外ラップイディオム |
-| **06** | [`GenericsDeepDive.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/GenericsDeepDive.java) | **型消去 (Type Erasure)** の物理的実態、ジェネリクスの不変性 (Invariance)、**PECS原則** (Producer `extends`, Consumer `super`)、再帰的境界ジェネリクス (`Comparable<T>`) |
-| **07** | [`StructuredConcurrencyAndScopedValues.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/StructuredConcurrencyAndScopedValues.java) | **`StructuredTaskScope`** (子スレッドのライフサイクル統合・キャンセル伝播)、**`ScopedValue`** (`ThreadLocal` を置き換える不変・軽量コンテキスト受け渡し) |
-| **08** | [`ModernIOAndHttpClient.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/ModernIOAndHttpClient.java) | **NIO.2 (`Files` & `Path`)** による行走査・ストリーム処理、標準 **`HttpClient`** による HTTP/2 & 非同期通信 (`sendAsync`) |
-| **09** | [`ReflectionAndProxies.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/ReflectionAndProxies.java) | カスタムアノテーション (`@Retention(RUNTIME)`)、リフレクション検査、**`Proxy` (動的プロキシ)** による AOP / メソッドインターセプト (Spring 内部機構の解剖) |
-| **10** | [`JvmMemoryAndPerformance.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/JvmMemoryAndPerformance.java) | JVM メモリ解剖 (Heap / Stack / Metaspace)、**JMM (Java Memory Model)**、**`volatile`** と happens-before 関係、G1GC vs ZGC (世代別ZGC)、オブジェクトヘッダー構造 |
-| **11** | [`SequencedCollectionsAndSafety.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/SequencedCollectionsAndSafety.java) | **Java 21 `SequencedCollection`** (`getFirst()`, `getLast()`, `reversed()`)、防衛的コピーの罠 (`unmodifiableList` vs `List.copyOf`)、`record` コンパクトコンストラクタ検証 |
-| **12** | [`ModernDesignPatterns.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/ModernDesignPatterns.java) | Modern Strategy パターン (ラムダ関数化)、Modern State パターン (**Sealed Interface + switch 式**)、Reactive Streams (**`java.util.concurrent.Flow` API**) |
+| **01** | [`BasicsAndTypes.java`](./src/sample/BasicsAndTypes.java) | プリミティブ vs 参照型、Auto-Boxing の罠、`==` vs `equals`、`var`、Text Blocks、**`record`**、**`sealed interface`**、`switch` パターンマッチング |
+| **02** | [`CollectionsAndStreams.java`](./src/sample/CollectionsAndStreams.java) | 不変リスト (`List.of`) vs 可変リスト、Stream パイプライン (`filter`/`map`/`sorted`/`toList`)、`Collectors.groupingBy`、`IntStream` (LINQ/Rust Iterator対比) |
+| **03** | [`ExceptionAndResource.java`](./src/sample/ExceptionAndResource.java) | 検査例外 (Checked) vs 非検査例外 (Unchecked)、`try-with-resources` (`AutoCloseable`) による確実なリソース解放、**`Optional<T>`** の作法とアンチパターン |
+| **04** | [`ConcurrencyAndVirtualThreads.java`](./src/sample/ConcurrencyAndVirtualThreads.java) | **Virtual Threads** (1万並行の超高速起動)、`CompletableFuture` (非同期合成・エラーフォールバック)、`ConcurrentHashMap`、`AtomicInteger` |
+| **05** | [`LambdaDeepDive.java`](./src/sample/LambdaDeepDive.java) | ラムダ式構文、標準関数型インターフェース (`Predicate`, `Function`, `Consumer`, `Supplier`)、メソッド参照4形態 (`::`)、実質的final、例外ラップイディオム |
+| **06** | [`GenericsDeepDive.java`](./src/sample/GenericsDeepDive.java) | **型消去 (Type Erasure)** の物理的実態、ジェネリクスの不変性 (Invariance)、**PECS原則** (Producer `extends`, Consumer `super`)、再帰的境界ジェネリクス (`Comparable<T>`) |
+| **07** | [`StructuredConcurrencyAndScopedValues.java`](./src/sample/StructuredConcurrencyAndScopedValues.java) | **`StructuredTaskScope`** (子スレッドのライフサイクル統合・キャンセル伝播)、**`ScopedValue`** (`ThreadLocal` を置き換える不変・軽量コンテキスト受け渡し) |
+| **08** | [`ModernIOAndHttpClient.java`](./src/sample/ModernIOAndHttpClient.java) | **NIO.2 (`Files` & `Path`)** による行走査・ストリーム処理、標準 **`HttpClient`** による HTTP/2 & 非同期通信 (`sendAsync`) |
+| **09** | [`ReflectionAndProxies.java`](./src/sample/ReflectionAndProxies.java) | カスタムアノテーション (`@Retention(RUNTIME)`)、リフレクション検査、**`Proxy` (動的プロキシ)** による AOP / メソッドインターセプト (Spring 内部機構の解剖) |
+| **10** | [`JvmMemoryAndPerformance.java`](./src/sample/JvmMemoryAndPerformance.java) | JVM メモリ解剖 (Heap / Stack / Metaspace)、**JMM (Java Memory Model)**、**`volatile`** と happens-before 関係、G1GC vs ZGC (世代別ZGC)、オブジェクトヘッダー構造 |
+| **11** | [`SequencedCollectionsAndSafety.java`](./src/sample/SequencedCollectionsAndSafety.java) | **Java 21 `SequencedCollection`** (`getFirst()`, `getLast()`, `reversed()`)、防衛的コピーの罠 (`unmodifiableList` vs `List.copyOf`)、`record` コンパクトコンストラクタ検証 |
+| **12** | [`ModernDesignPatterns.java`](./src/sample/ModernDesignPatterns.java) | Modern Strategy パターン (ラムダ関数化)、Modern State パターン (**Sealed Interface + switch 式**)、Reactive Streams (**`java.util.concurrent.Flow` API**) |
 
-- [`Main.java`](file:///C:/Users/harun/programming/Java/sample/src/sample/Main.java): 全12モジュールを順序よく実演する統合エントリーポイント
+- [`Main.java`](./src/sample/Main.java): 全12モジュールを順序よく実演する統合エントリーポイント
 
 > 📖 **詳細理論ドキュメント**:  
-> ラムダ式の完全な解説ドキュメントは [**`LAMBDA.md`**](file:///C:/Users/harun/programming/Java/sample/LAMBDA.md) を参照してください。構文の省略規則から内部バイトコード実装（`invokedynamic`）、他言語比較まで完全網羅しています。
+> ラムダ式の完全な解説ドキュメントは [**`LAMBDA.md`**](./LAMBDA.md) を参照してください。構文の省略規則から内部バイトコード実装（`invokedynamic`）、他言語比較まで完全網羅しています。
 
 ---
 
