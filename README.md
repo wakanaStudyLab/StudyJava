@@ -4,8 +4,10 @@ Rust, C#, Go などの静的型付け言語を習得済みのエンジニアが�
 
 基本構文・型システム・ラムダから、PECSジェネリクス、構造化並行性（Project Loom）、NIO.2/HttpClient、リフレクション/動的プロキシ（Spring内部機構）、JMM（メモリモデル）、デザインパターン、さらに **Project Panama FFM API (ネイティブC連携・オフヒープメモリ)、Stream Gatherers、Record Patterns (構造分解)、Flexible Constructor Bodies** まで全16モジュールで完全網羅しています。
 
-> 📖 **総合解説マスターハンドブック**:  
-> 本リポジトリの全16モジュールの詳細解説、他言語対比、内部メカニズム、ベストプラクティスを一気通貫で読める [**`MODERN_JAVA_GUIDE.md`**](./MODERN_JAVA_GUIDE.md) を新設しました！これ1冊でモダンJavaの全貌をマスターできます。
+> 📖 **総合解説マスターハンドブック & 各種ガイド**:  
+> - [**`MODERN_JAVA_GUIDE.md`**](./MODERN_JAVA_GUIDE.md): 📕 モダンJava完全攻略マスターハンドブック (全16モジュール詳細解説)
+> - [**`GRADLE_GUIDE.md`**](./GRADLE_GUIDE.md): 🐘 Gradle 完全攻略マスターガイド (build.gradle の書き方・実用パターン・CLI集)
+> - [**`LAMBDA.md`**](./LAMBDA.md): 📘 Modern Java ラムダ式・関数型プログラミング完全理解ガイド
 
 ---
 
@@ -18,6 +20,7 @@ Rust, C#, Go などの静的型付け言語を習得済みのエンジニアが�
 ├── gradlew / gradlew.bat             # Gradle Wrapper 実行スクリプト
 ├── gradle/wrapper/                   # Gradle Wrapper 設定 & JAR
 ├── build_and_run.ps1                 # 一括コンパイル & 実行スクリプト (プレビュー & ネイティブアクセス有効化)
+├── GRADLE_GUIDE.md                   # 🐘 Gradle 完全攻略マスターガイド (書き方・実用パターン・コマンド集)
 ├── MODERN_JAVA_GUIDE.md              # 📕 モダンJava完全攻略マスターハンドブック (全内容網羅ガイド)
 ├── LAMBDA.md                         # 📘 Modern Java ラムダ式・関数型プログラミング完全理解ガイド
 ├── README.md                         # 本ファイル (総合リファレンス & 言語対比表)
